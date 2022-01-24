@@ -1,20 +1,28 @@
-import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Text, View } from 'react-native';
+import React, { useEffect } from "react";
+import { AppContextProvider } from "./context/AppContext";
+import AppNavigation from "./navigation/AppNavigation";
+import * as Notifications from "expo-notifications";
 
-export default function App() {
+const App = () => {
+  const lastNotificationResponse = Notifications.useLastNotificationResponse();
+
+  useEffect(() => {
+    if (lastNotificationResponse) {
+      //console.log(lastNotificationResponse);
+
+      //get the route
+      const route = JSON.stringify(
+        lastNotificationResponse.notification.request.content.data.route
+      );
+
+      //use some function to return the correct screen by route
+      console.log(route);
+    }
+  }, [lastNotificationResponse]);
   return (
-    <View style={styles.container}>
-      <Text>Open up App.js to start working on your app!</Text>
-      <StatusBar style="auto" />
-    </View>
+    <AppContextProvider>
+      <AppNavigation />
+    </AppContextProvider>
   );
-}
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-});
+};
+export default App;
