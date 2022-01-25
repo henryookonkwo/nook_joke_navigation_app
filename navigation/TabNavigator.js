@@ -1,34 +1,25 @@
-import * as React from "react";
-import { Text, View } from "react-native";
-import { NavigationContainer } from "@react-navigation/native";
+import React from "react";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
-import HomeScreen from "../screens/HomeScreen";
 
-function SettingsScreen() {
-  return (
-    <View style={{ flex: 1, justifyContent: "center", alignItems: "center" }}>
-      <Text>Settings!</Text>
-    </View>
-  );
-}
+import { MainStackNavigator, ContactStackNavigator } from "./StackNavigator";
 
 const Tab = createBottomTabNavigator();
 
-const TabNavigator = () => {
+const BottomTabNavigator = () => {
   return (
     <Tab.Navigator>
       <Tab.Screen
-        name="Jokes"
-        component={HomeScreen}
+        name="Home"
+        component={MainStackNavigator}
         options={{ headerShown: false }}
       />
       <Tab.Screen
-        name="Others"
-        component={SettingsScreen}
+        name="Contact"
+        component={ContactStackNavigator}
         options={{ headerShown: false }}
       />
     </Tab.Navigator>
   );
 };
 
-export default TabNavigator;
+export default BottomTabNavigator;
