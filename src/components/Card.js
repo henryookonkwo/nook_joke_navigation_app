@@ -16,9 +16,9 @@ const Cards = (props) => {
     <ScrollView>
       <View style={styles.container}>
         <Card>
-          <Card.Title>{props.title}</Card.Title>
+          <Card.Title style={styles.header}>{props.title}</Card.Title>
           <Card.Divider />
-          <Text>{props.data}</Text>
+          <Text style={styles.body}>{props.data}</Text>
         </Card>
       </View>
     </ScrollView>
@@ -32,10 +32,18 @@ const styles = StyleSheet.create({
     alignItems: "center",
     textAlign: "center",
   },
+  header: {
+    backgroundColor: "#034f84",
+    color: "#FFFFFF",
+    fontSize: 20,
+  },
 
   body: {
     fontSize: 16,
     marginTop: 5,
+    backgroundColor: "#92a8d1",
+    color: "#000000",
+    fontFamily: "Avenir",
   },
 });
 

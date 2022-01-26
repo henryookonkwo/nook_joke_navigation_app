@@ -59,11 +59,14 @@ const styles = StyleSheet.create({
     justifyContent: "center",
     alignItems: "center",
     textAlign: "center",
-    bottom: 5,
+    margin: 5,
+    padding: 5,
+    fontSize: 20,
+    color: "#3b3a30",
   },
   font: {
     fontSize: 16,
-    fontFamily: "Tahoma",
+    fontFamily: "Helvetica",
   },
 });
 
