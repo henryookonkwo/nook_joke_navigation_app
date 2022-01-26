@@ -2,7 +2,7 @@ import React from "react";
 import { createStackNavigator } from "@react-navigation/stack";
 import Home from "../screens/Home";
 import JokeScreen from "../screens/JokeScreen";
-import Contact from "../screens/Contact";
+import About from "../screens/About";
 
 const Stack = createStackNavigator();
 
@@ -10,7 +10,7 @@ const screenOptionStyle = {
   headerStyle: {
     backgroundColor: "#9AC4F8",
   },
-  headerTintColor: "white",
+  headerTintColor: "black",
   headerBackTitle: "Back",
 };
 
@@ -35,8 +35,8 @@ const ContactStackNavigator = () => {
   return (
     <Stack.Navigator screenOptions={screenOptionStyle}>
       <Stack.Screen
-        name="Contact"
-        component={Contact}
+        name="About"
+        component={About}
         options={{ headerShown: false }}
       />
     </Stack.Navigator>

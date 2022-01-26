@@ -1,28 +1,48 @@
 import React, { useState, useEffect } from "react";
 import { View, Text, StyleSheet } from "react-native";
+import Card from "../src/components/Card";
 
 const Home = () => {
   // this is used to store the joke
-  const [joke, setJoke] = useState("");
+  const [joke, setJoke] = useState([]);
+  let JokeCounter = 1;
+
   //on render we get a joke to render to user
   useEffect(async () => {
     try {
       const response = await fetch(
-        `https://v2.jokeapi.dev/joke/Any?type=single`
+        // `https://v2.jokeapi.dev/joke/Any?type=single`
+        `https://v2.jokeapi.dev/joke/Any?type=single&amount=3`
       );
       const data = await response.json();
-      setJoke(data.joke);
+      const allJokes = data.jokes;
+      let result = allJokes.map(({ joke }) => joke);
+
+      // console.log(result);
+      setJoke(result);
     } catch (error) {
       console.log(error);
     }
   }, []);
 
+  console.log(joke.length);
   return (
-    <View style={styles.center}>
-      <Text>Here is a random joke to make your day</Text>
-      <Text>{joke}</Text>
+    <>
+      {/* <View style={styles.center}> */}
+      <Text style={styles.header}>List of random jokes to make your day</Text>
+      <Text style={styles.center}>
+        <Card data={joke[0]} title={"Joke 1"} />
+      </Text>
+      <Text style={styles.center}>
+        <Card data={joke[1]} title={"Joke 2"} />
+      </Text>
+      <Text style={styles.center}>
+        <Card data={joke[2]} title={"Joke 3"} />
+      </Text>
+
       {/* <Button title="Go to Joke Screen" onPress={handleOnPress} /> */}
-    </View>
+      {/* </View> */}
+    </>
   );
 };
 
@@ -32,6 +52,18 @@ const styles = StyleSheet.create({
     justifyContent: "center",
     alignItems: "center",
     textAlign: "center",
+  },
+  header: {
+    top: 10,
+    fontWeight: "bold",
+    justifyContent: "center",
+    alignItems: "center",
+    textAlign: "center",
+    bottom: 5,
+  },
+  font: {
+    fontSize: 16,
+    fontFamily: "Tahoma",
   },
 });
 
